@@ -1,0 +1,210 @@
+{
+  "courseCatalog": [
+    "Full Stack Development",
+    "Data Science",
+    "UI / UX Design",
+    "Cyber Security",
+    "Cloud Computing",
+    "Artificial Intelligence"
+  ],
+  "admins": [
+    {
+      "id": "adm_001",
+      "name": "Admin",
+      "email": "admin@learnsphere.com",
+      "passwordHash": "c1b23c06eafb02b86da5108d648a663d:98bf4bd1a6c05ddce71a79619263d6589ff87af5bb889a3a4f0931ecfaebd5d345557dab657129611da985d690ff98ce6b86136d3b1b27c342a0cdd25fddee6d",
+      "createdAt": "2026-04-01T09:00:00.000Z"
+    }
+  ],
+  "students": [
+    {
+      "id": "stu_001",
+      "name": "Aarav Kumar",
+      "email": "aarav@example.com",
+      "passwordHash": "06a6af55aaa8ad4aabf477608a73b186:74dbc33347f820922e21f2862929c257c0ca870a059bd93187cbeccd862260afa24d3e81860f171a019002b98ae8063b1dc4d808ab6ba37b9b6ff06672b2bf75",
+      "degree": "B.Tech / B.E",
+      "year": "2nd Year",
+      "createdAt": "2026-05-01T09:00:00.000Z",
+      "courses": [
+        {
+          "course": "Full Stack Development",
+          "completedModules": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "quizPassed": true,
+          "quizScore": 5,
+          "quizAttempts": 1,
+          "progress": 100,
+          "status": "Completed"
+        },
+        {
+          "course": "Data Science",
+          "completedModules": [
+            "m1",
+            "m2"
+          ],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 53,
+          "status": "Active"
+        },
+        {
+          "course": "UI / UX Design",
+          "completedModules": [
+            "m1"
+          ],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 27,
+          "status": "Active"
+        },
+        {
+          "course": "Cyber Security",
+          "completedModules": [],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 0,
+          "status": "Not Started"
+        }
+      ]
+    },
+    {
+      "id": "stu_002",
+      "name": "Sneha Reddy",
+      "email": "sneha@example.com",
+      "passwordHash": "60e48e7c4bec5b30220e7482c181835c:379a971db75f53e4914a90525355d13f926f26477a6def4dbd08b34b3687431856439c1dcbbf1f959fd4b73ffeb93e6ae3f60af55323c235b4e53d0abea82bcc",
+      "degree": "B.Sc",
+      "year": "3rd Year",
+      "createdAt": "2026-05-03T09:00:00.000Z",
+      "courses": [
+        {
+          "course": "Data Science",
+          "completedModules": [
+            "m1",
+            "m2"
+          ],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 53,
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "stu_003",
+      "name": "Rahul Verma",
+      "email": "rahul@example.com",
+      "passwordHash": "2c41d027608be2cab50ad3a6110d0a77:3b91ab09fa08b933199994d0a00b913ed085a409732f3d6b026af2d32c50d2e7e79e0be621090bd51eb8a67d70975a5c1ea58d2316c2dcbb3447e6663348ad85",
+      "degree": "M.C.A",
+      "year": "1st Year",
+      "createdAt": "2026-05-05T09:00:00.000Z",
+      "courses": [
+        {
+          "course": "UI / UX Design",
+          "completedModules": [
+            "m1"
+          ],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 27,
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "stu_004",
+      "name": "Priya Sharma",
+      "email": "priya@example.com",
+      "passwordHash": "2620b388c90e50b31ac36aabd75a43d3:76dcbf9dfc8bdfa7c9d2d9bd4583a6ca95888f8bb9d1de92d5220057ee7b077e5b77c169a4159331b184607912fbfcf04320e92b338076be098cb60ebc4fac55",
+      "degree": "B.C.A",
+      "year": "4th Year",
+      "createdAt": "2026-05-08T09:00:00.000Z",
+      "courses": [
+        {
+          "course": "Cyber Security",
+          "completedModules": [],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 0,
+          "status": "Not Started"
+        }
+      ]
+    },
+    {
+      "id": "stu_005",
+      "name": "Meera Krishnan",
+      "email": "meera@example.com",
+      "passwordHash": "09d8eda48e216f0fa69cab280294e9e6:9dfca517daeb7a67ce1e74eb1c639fb7009da6eca7aa590ae7afa0f3899a8174a8bcc14df3e7b33428d9fdaa575cc32d47eb2d93dc13a194f44f9b37a548bfb0",
+      "degree": "B.Tech / B.E",
+      "year": "3rd Year",
+      "createdAt": "2026-05-10T09:00:00.000Z",
+      "courses": [
+        {
+          "course": "Data Science",
+          "completedModules": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "quizPassed": true,
+          "quizScore": 4,
+          "quizAttempts": 1,
+          "progress": 100,
+          "status": "Completed"
+        }
+      ]
+    },
+    {
+      "id": "stu_1584bae21026",
+      "name": "Shalini",
+      "email": "poo@gmail.com",
+      "passwordHash": "155edea2060665e22d4dccc7ad99087f:a55498a45ac94920fc3778689b15c4b4f33dc9d0415adee3f3da63dcffb5659e665382b44d9ea076bbd68ff458894d53607f47afb3c592d5dea214b8c57f14c2",
+      "degree": "B.Tech / B.E",
+      "year": "2nd Year",
+      "createdAt": "2026-11-01T16:30:55.175Z",
+      "courses": [
+        {
+          "course": "UI / UX Design",
+          "completedModules": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "quizPassed": true,
+          "quizScore": 5,
+          "quizAttempts": 1,
+          "progress": 100,
+          "status": "Completed"
+        }
+      ]
+    },
+    {
+      "id": "stu_dbfff05b65ff",
+      "name": "Datchayeni",
+      "email": "datch10@gmail.com",
+      "passwordHash": "e4047b5f0741189a190252657c309839:a623fbbe071b650c8f51e30435e1488cb70b6e3576d0c8ed51e4327d38f6135c1dbca96d88b155370a4e0d5c9fc3e1675a60fad12b3e122e9d84b3ce4abffd0c",
+      "degree": "B.Sc",
+      "year": "3rd Year",
+      "createdAt": "2026-11-02T09:31:00.780Z",
+      "courses": [
+        {
+          "course": "Artificial Intelligence",
+          "completedModules": [],
+          "quizPassed": false,
+          "quizScore": null,
+          "quizAttempts": 0,
+          "progress": 0,
+          "status": "Not Started"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "Full Stack Development": {
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Introduction & Foundations",
+        "type": "reading",
+        "content": "A full stack developer works across the entire application — the front end (what users see and interact with in the browser) and the back end (the server, business logic, and database). When you visit a website, your browser sends an HTTP request to a server; the server processes it, often reading or writing to a database, and sends back a response — usually HTML, or JSON for dynamic apps. In this course you'll build both sides: structuring pages with HTML, styling them with CSS, adding interactivity with JavaScript, and eventually connecting a page to a backend that stores real data."
+      },
+      {
+        "id": "m2",
+        "title": "Core Skills Walkthrough",
+        "type": "video",
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "content": "This module's video is a placeholder sample clip standing in for a recorded lesson — swap it for your own screen-recorded walkthrough. In a real version of this lesson, you would watch a live build of a simple page: writing semantic HTML for a layout, applying CSS for spacing and color, and using JavaScript to respond to a button click and update the page without reloading it."
+      },
+      {
+        "id": "m3",
+        "title": "Hands-on Project & Best Practices",
+        "type": "reading",
+        "content": "Now put the pieces together conceptually: a form on the front end collects user input and sends it to a backend route; the backend validates the data, saves it, and returns a JSON response; the front end reads that response and updates the page. Good habits to build early: keep your front-end and back-end code in separate, clearly named folders; never hardcode secrets — use environment variables; and commit your work often with Git so you always have a history to fall back on."
+      }
+    ],
+    "quiz": {
+      "passRatio": 0.6,
+      "questions": [
+        { "id": "q1", "question": "What does HTML primarily define on a webpage?", "options": ["Structure and content", "Styling", "Server logic", "Database schema"], "correct": 0 },
+        { "id": "q2", "question": "Which technology is typically used to style a webpage?", "options": ["JavaScript", "CSS", "SQL", "HTTP"], "correct": 1 },
+        { "id": "q3", "question": "In a full stack app, which layer stores persistent data?", "options": ["Browser", "CSS", "Database", "DOM"], "correct": 2 },
+        { "id": "q4", "question": "What does CRUD stand for?", "options": ["Create, Read, Update, Delete", "Copy, Run, Undo, Deploy", "Create, Render, Use, Debug", "Connect, Request, Upload, Download"], "correct": 0 },
+        { "id": "q5", "question": "Which of these is a version control system?", "options": ["Git", "Node", "Express", "Bootstrap"], "correct": 0 }
+      ]
+    }
+  },
+
+  "Data Science": {
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Introduction & Foundations",
+        "type": "reading",
+        "content": "Data science is the process of turning raw data into insight. The typical pipeline looks like: collect data, clean it (handle missing or messy values), explore it visually, build a model, and communicate the results. Python is the most common language for this work, largely thanks to libraries like pandas (for tabular data), numpy (for numeric computation), and matplotlib (for visualization)."
+      },
+      {
+        "id": "m2",
+        "title": "Core Skills Walkthrough",
+        "type": "video",
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "content": "This module's video is a placeholder sample clip standing in for a recorded lesson. A real lesson here would walk through loading a CSV into a dataframe, spotting and handling missing values, and producing a first chart — a histogram or scatter plot — to understand the shape of the data before modeling anything."
+      },
+      {
+        "id": "m3",
+        "title": "Hands-on Project & Best Practices",
+        "type": "reading",
+        "content": "Once your data is clean, you can start modeling. Regression predicts a continuous number (like a price), while classification predicts a category (like spam vs. not spam). A critical practice is splitting your data into a training set and a test set — you fit the model on the training set and evaluate it on data it has never seen, which is how you catch overfitting: a model that memorizes training data but fails to generalize."
+      }
+    ],
+    "quiz": {
+      "passRatio": 0.6,
+      "questions": [
+        { "id": "q1", "question": "What is the first step in a typical data science pipeline?", "options": ["Modeling", "Data collection", "Deployment", "Visualization"], "correct": 1 },
+        { "id": "q2", "question": "Which library is commonly used for data manipulation in Python?", "options": ["pandas", "React", "Bootstrap", "Express"], "correct": 0 },
+        { "id": "q3", "question": "What does \"overfitting\" mean?", "options": ["The model is too simple", "The model performs well on training data but poorly on new data", "The data has no missing values", "The model trains too fast"], "correct": 1 },
+        { "id": "q4", "question": "Regression is typically used to predict:", "options": ["Categories", "Continuous numeric values", "Images", "Text sentiment only"], "correct": 1 },
+        { "id": "q5", "question": "Splitting data into train/test sets helps to:", "options": ["Speed up cleaning", "Evaluate how well a model generalizes", "Permanently reduce dataset size", "Automatically remove outliers"], "correct": 1 }
+      ]
+    }
+  },
+
+  "UI / UX Design": {
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Introduction & Foundations",
+        "type": "reading",
+        "content": "UX (user experience) design is about how a product feels and functions for the person using it — is it easy to understand, efficient, and satisfying? UI (user interface) design is the visual layer: colors, typography, spacing, and components. Good design starts with user-centered research: talking to real users, understanding their goals, and identifying pain points before drawing a single screen."
+      },
+      {
+        "id": "m2",
+        "title": "Core Skills Walkthrough",
+        "type": "video",
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "content": "This module's video is a placeholder sample clip standing in for a recorded lesson. A real lesson here would demonstrate sketching a low-fidelity wireframe for a screen, then turning it into an interactive prototype where buttons and links can be clicked to simulate the real flow before any code is written."
+      },
+      {
+        "id": "m3",
+        "title": "Hands-on Project & Best Practices",
+        "type": "reading",
+        "content": "Once a prototype exists, test it with real users and watch where they get confused. Apply usability heuristics — clear feedback, consistency, error prevention — and accessibility basics like sufficient color contrast and descriptive alt text for images. Design is iterative: expect to revise a screen multiple times based on feedback rather than getting it perfect on the first try."
+      }
+    ],
+    "quiz": {
+      "passRatio": 0.6,
+      "questions": [
+        { "id": "q1", "question": "UX design primarily focuses on:", "options": ["Visual color palette only", "The overall experience and usability for the user", "Backend performance", "Database schema"], "correct": 1 },
+        { "id": "q2", "question": "A wireframe is best described as:", "options": ["A final polished visual design", "A low-fidelity layout blueprint of a screen", "A type of database", "A programming language"], "correct": 1 },
+        { "id": "q3", "question": "Which of these improves accessibility?", "options": ["Low contrast text", "Descriptive alt text for images", "Removing all labels", "Auto-playing sound"], "correct": 1 },
+        { "id": "q4", "question": "User research helps designers primarily to:", "options": ["Guess what users want", "Understand real user needs and pain points", "Avoid testing designs", "Skip prototyping"], "correct": 1 },
+        { "id": "q5", "question": "A usability heuristic is:", "options": ["A general best-practice principle for interface design", "A type of database index", "A CSS framework", "A programming loop"], "correct": 0 }
+      ]
+    }
+  },
+
+  "Cyber Security": {
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Introduction & Foundations",
+        "type": "reading",
+        "content": "Security is often summarized by the CIA triad: Confidentiality (only authorized people can see data), Integrity (data isn't tampered with), and Availability (systems stay up and usable). Threats come in many forms — from social engineering that targets people, to malware that targets systems — and defending against them starts with understanding what you're protecting and why it matters."
+      },
+      {
+        "id": "m2",
+        "title": "Core Skills Walkthrough",
+        "type": "video",
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "content": "This module's video is a placeholder sample clip standing in for a recorded lesson. A real lesson here would cover, at a conceptual and defensive level, how phishing emails try to look legitimate to trick a person into revealing credentials, and how malware can spread — framed entirely around recognition and prevention, not how to create either."
+      },
+      {
+        "id": "m3",
+        "title": "Hands-on Project & Best Practices",
+        "type": "reading",
+        "content": "Strong defensive habits go a long way: use unique, strong passwords with a password manager; enable multi-factor authentication wherever it's offered; keep software patched, since updates frequently fix known vulnerabilities; and follow the principle of least privilege — give every account only the access it actually needs, nothing more."
+      }
+    ],
+    "quiz": {
+      "passRatio": 0.6,
+      "questions": [
+        { "id": "q1", "question": "The CIA triad in security stands for:", "options": ["Confidentiality, Integrity, Availability", "Control, Identity, Access", "Code, Input, Authentication", "Cyber, Internet, Access"], "correct": 0 },
+        { "id": "q2", "question": "Phishing is best described as:", "options": ["A type of firewall", "A social engineering attack tricking users into revealing information", "A password strength tool", "A backup process"], "correct": 1 },
+        { "id": "q3", "question": "Multi-factor authentication adds security by:", "options": ["Using only a password", "Requiring more than one verification method", "Disabling passwords entirely", "Encrypting the database only"], "correct": 1 },
+        { "id": "q4", "question": "\"Least privilege\" means:", "options": ["Giving all users admin rights", "Giving users only the access they need to do their job", "Removing all passwords", "Allowing unrestricted network access"], "correct": 1 },
+        { "id": "q5", "question": "Regularly patching software helps to:", "options": ["Slow down systems", "Fix known security vulnerabilities", "Increase attack surface", "Disable firewalls"], "correct": 1 }
+      ]
+    }
+  },
+
+  "Cloud Computing": {
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Introduction & Foundations",
+        "type": "reading",
+        "content": "Cloud computing delivers computing resources — servers, storage, databases — over the internet instead of on local hardware. Service models range from IaaS (Infrastructure as a Service, like renting a virtual machine) to PaaS (Platform as a Service, where the platform manages the OS/runtime for you) to SaaS (Software as a Service, like a ready-to-use web app). Deployment models include public, private, and hybrid clouds."
+      },
+      {
+        "id": "m2",
+        "title": "Core Skills Walkthrough",
+        "type": "video",
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "content": "This module's video is a placeholder sample clip standing in for a recorded lesson. A real lesson here would walk through deploying a simple web app to a cloud platform conceptually: packaging the app, choosing a compute option, and pointing a domain at the deployed service."
+      },
+      {
+        "id": "m3",
+        "title": "Hands-on Project & Best Practices",
+        "type": "reading",
+        "content": "Two ideas define cloud economics: scalability (the ability to handle more load by adding resources) and elasticity (automatically scaling resources up or down as demand changes, so you're not paying for idle capacity). Combined with pay-as-you-go pricing, this is why cloud computing is attractive compared to buying and maintaining physical servers."
+      }
+    ],
+    "quiz": {
+      "passRatio": 0.6,
+      "questions": [
+        { "id": "q1", "question": "SaaS stands for:", "options": ["Software as a Service", "System as a Server", "Storage and a Server", "Service as an App"], "correct": 0 },
+        { "id": "q2", "question": "Which of these is an example of IaaS?", "options": ["Gmail", "Virtual machines / compute instances", "Google Docs", "Netflix"], "correct": 1 },
+        { "id": "q3", "question": "\"Elasticity\" in cloud computing refers to:", "options": ["Fixed server capacity", "Automatically scaling resources up/down with demand", "Manual-only scaling", "Data encryption"], "correct": 1 },
+        { "id": "q4", "question": "A private cloud is:", "options": ["Shared publicly by anyone", "Dedicated infrastructure for a single organization", "Always free", "Only used for storage"], "correct": 1 },
+        { "id": "q5", "question": "A common benefit of cloud computing is:", "options": ["Higher upfront hardware costs", "Pay-as-you-go pricing and flexibility", "No internet required", "Fixed, unchangeable capacity"], "correct": 1 }
+      ]
+    }
+  },
+
+  "Artificial Intelligence": {
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Introduction & Foundations",
+        "type": "reading",
+        "content": "Artificial Intelligence is the broad idea of machines performing tasks that typically require human intelligence. Machine Learning (ML) is a subset of AI where systems learn patterns from data instead of being explicitly programmed with rules. Deep Learning is a subset of ML that uses neural networks with many layers, and it powers many modern applications like image recognition and language models."
+      },
+      {
+        "id": "m2",
+        "title": "Core Skills Walkthrough",
+        "type": "video",
+        "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "content": "This module's video is a placeholder sample clip standing in for a recorded lesson. A real lesson here would visually explain, at a conceptual level, how a neural network takes an input, passes it through layers of weighted connections, and adjusts those weights over many examples to gradually improve its predictions."
+      },
+      {
+        "id": "m3",
+        "title": "Hands-on Project & Best Practices",
+        "type": "reading",
+        "content": "AI systems are only as good as the data they learn from — if training data reflects unfair or unbalanced patterns, the model can learn and amplify that bias. Responsible AI development means actively considering fairness, transparency (can you explain why the model made a decision?), and accountability, not just raw accuracy."
+      }
+    ],
+    "quiz": {
+      "passRatio": 0.6,
+      "questions": [
+        { "id": "q1", "question": "Machine learning is best described as:", "options": ["Manually programming every rule", "Systems that learn patterns from data", "A type of database", "A web design tool"], "correct": 1 },
+        { "id": "q2", "question": "Deep learning primarily uses:", "options": ["Neural networks with multiple layers", "Spreadsheets", "CSS grids", "SQL joins"], "correct": 0 },
+        { "id": "q3", "question": "AI bias can occur when:", "options": ["Training data reflects unfair patterns, and the model learns them", "A model is 100% accurate", "No data is used at all", "The model is too small"], "correct": 0 },
+        { "id": "q4", "question": "A common real-world use of AI is:", "options": ["Recommendation systems", "Physical construction only", "Manual bookkeeping only", "Printing paper documents"], "correct": 0 },
+        { "id": "q5", "question": "Responsible AI development includes:", "options": ["Ignoring fairness and transparency", "Considering fairness, transparency and accountability", "Hiding how models make decisions", "Avoiding any testing"], "correct": 1 }
+      ]
+    }
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course — LearnSphere</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/theme.css">
+
+<style>
+.player-wrap{ max-width:920px; margin:0 auto; padding:30px 20px 60px; }
+.module-list-item{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 16px; border-radius:12px;
+    border:1px solid #eef0f7; background:#fff;
+    margin-bottom:10px; cursor:pointer; transition:.2s;
+}
+.module-list-item:hover{ border-color:var(--primary); }
+.module-list-item.active{ border-color:var(--primary); background:#eef2ff; }
+.module-list-item .step-icon{
+    width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:#eef0f7; color:#94a3b8; flex-shrink:0; font-weight:700; font-size:13px;
+}
+.module-list-item.done .step-icon{ background:var(--success); color:#fff; }
+.module-list-item.active .step-icon{ background:var(--primary); color:#fff; }
+
+.quiz-option{
+    display:block; border:1.5px solid #e2e8f0; border-radius:10px;
+    padding:12px 16px; margin-bottom:10px; cursor:pointer; transition:.15s;
+}
+.quiz-option:hover{ border-color:var(--primary); }
+.quiz-option input{ margin-right:10px; }
+.quiz-option.selected{ border-color:var(--primary); background:#eef2ff; }
+.quiz-option.correct{ border-color:var(--success); background:#ecfdf5; }
+.quiz-option.incorrect{ border-color:var(--danger); background:#fef2f2; }
+
+video{ width:100%; border-radius:12px; background:#000; }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-glass px-3 py-3">
+  <div class="container-fluid">
+    <a href="/student-dashboard" class="text-white fw-600"><i class="bi bi-arrow-left me-2"></i>Back to Dashboard</a>
+    <span class="brand-text" id="navCourseTitle">Course</span>
+  </div>
+</nav>
+
+<div class="player-wrap">
+
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3 mt-4">
+    <div>
+      <h3 class="fw-bold mb-1" id="courseTitle">Loading…</h3>
+      <span class="badge-soft badge-soft-primary" id="courseStatusBadge">Loading</span>
+    </div>
+    <div class="text-end">
+      <div class="fw-700" id="courseProgressPct">0%</div>
+      <small class="text-muted">Course progress</small>
+    </div>
+  </div>
+
+  <div class="progress mb-4" style="height:10px;border-radius:10px;">
+    <div class="progress-bar" id="courseProgressBar" style="width:0%;background:var(--gradient-primary)"></div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Module list -->
+    <div class="col-lg-4">
+      <h6 class="fw-bold mb-3">Learning Path</h6>
+      <div id="moduleList"></div>
+
+      <div class="card-surface p-3 mt-3" id="quizLauncher" style="display:none;">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <i class="bi bi-patch-question fs-4" style="color:var(--primary)"></i>
+          <div class="fw-600">Final Quiz</div>
+        </div>
+        <p class="text-muted small mb-2" id="quizStatusText">All modules complete — take the quiz to earn your certificate.</p>
+        <button class="btn btn-gradient-primary btn-sm w-100" id="startQuizBtn">Take the Quiz</button>
+      </div>
+    </div>
+
+    <!-- Content area -->
+    <div class="col-lg-8">
+
+      <!-- Module viewer -->
+      <div class="card-surface p-4" id="moduleViewer">
+        <span class="badge-soft badge-soft-info mb-2" id="moduleTypeBadge">Reading</span>
+        <h4 class="fw-bold" id="moduleTitle">—</h4>
+        <div id="moduleVideoWrap" style="display:none;" class="mb-3">
+          <video controls id="moduleVideo"></video>
+        </div>
+        <p class="text-muted" id="moduleContent" style="line-height:1.8;">Loading module…</p>
+        <button class="btn btn-gradient-accent" id="markCompleteBtn">
+          Mark Complete & Continue <i class="bi bi-arrow-right ms-1"></i>
+        </button>
+      </div>
+
+      <!-- Quiz viewer -->
+      <div class="card-surface p-4" id="quizViewer" style="display:none;">
+        <h4 class="fw-bold mb-1">Final Quiz</h4>
+        <p class="text-muted mb-4">Answer all questions, then submit. You need to pass to earn your certificate.</p>
+        <div id="quizQuestions"></div>
+        <button class="btn btn-gradient-primary" id="submitQuizBtn">Submit Quiz</button>
+      </div>
+
+      <!-- Quiz result -->
+      <div class="card-surface p-4 text-center" id="quizResult" style="display:none;">
+        <div class="icon-tile mx-auto mb-3" id="resultIcon" style="width:64px;height:64px;font-size:28px;">
+          <i class="bi bi-award-fill"></i>
+        </div>
+        <h4 class="fw-bold" id="resultTitle">—</h4>
+        <p class="text-muted mb-3" id="resultSubtitle">—</p>
+        <div id="resultActions"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/course-player.js"></script>
+</body>
+</html>

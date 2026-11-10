@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard — LearnSphere</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="dash-sidebar">
+  <div class="brand-row">
+    <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>
+    <span class="brand-text">LearnSphere</span>
+  </div>
+
+  <a href="/student-dashboard" class="nav-item active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+  <a href="#my-courses" class="nav-item"><i class="bi bi-journal-bookmark-fill"></i> My Courses</a>
+  <a href="#available-courses" class="nav-item"><i class="bi bi-plus-circle-fill"></i> Apply for Courses</a>
+  <a href="#progress" class="nav-item"><i class="bi bi-graph-up-arrow"></i> Progress</a>
+  <a href="#certificate" class="nav-item"><i class="bi bi-award-fill"></i> Certificates</a>
+  <a href="/account-settings" class="nav-item"><i class="bi bi-gear-fill"></i> Account Settings</a>
+  <button class="nav-item" data-logout data-logout-redirect="/"><i class="bi bi-box-arrow-right"></i> Logout</button>
+</div>
+
+<!-- Main -->
+<div class="dash-main">
+
+  <div class="topbar flex-wrap gap-3">
+    <div>
+      <h4 class="fw-bold mb-0" id="welcomeName">Welcome back 👋</h4>
+      <p class="text-muted mb-0">Here's how your learning is progressing today.</p>
+    </div>
+    <div class="avatar-chip">
+      <div class="av" id="userAvatar">··</div>
+      <div>
+        <div class="fw-600 small" id="userName">&nbsp;</div>
+        <small class="text-muted" id="userMeta">&nbsp;</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completion banner (shown dynamically when a course is at 100%) -->
+  <div class="card-surface p-3 px-4 mb-4 d-none flex-wrap justify-content-between align-items-center gap-2" id="completionBanner" style="border-left:5px solid var(--success);">
+    <div class="d-flex align-items-center gap-3">
+      <i class="bi bi-trophy-fill fs-3 text-warning"></i>
+      <div>
+        <div class="fw-600">You completed <b id="completionCourseName">a course</b> 🎉</div>
+        <small class="text-muted">Your certificate is ready to view.</small>
+      </div>
+    </div>
+    <button class="btn btn-gradient-primary btn-sm" id="viewCertBtn">View Certificate</button>
+  </div>
+
+  <!-- Metric cards -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-1">
+        <div class="metric-icon"><i class="bi bi-journal-bookmark"></i></div>
+        <p>Enrolled Courses</p>
+        <h2 class="skeleton" id="statEnrolled">--</h2>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-4">
+        <div class="metric-icon"><i class="bi bi-check2-circle"></i></div>
+        <p>Completed</p>
+        <h2 class="skeleton" id="statCompleted">--</h2>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-3">
+        <div class="metric-icon"><i class="bi bi-hourglass-split"></i></div>
+        <p>In Progress</p>
+        <h2 class="skeleton" id="statInProgress">--</h2>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-2">
+        <div class="metric-icon"><i class="bi bi-award"></i></div>
+        <p>Certificates</p>
+        <h2 class="skeleton" id="statCertificates">--</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Courses -->
+  <div class="d-flex justify-content-between align-items-center mb-3" id="my-courses">
+    <h5 class="fw-bold mb-0">My Courses</h5>
+  </div>
+
+  <div class="row g-4 mb-4" id="progress">
+    <div class="col-12" id="coursesEmptyState" style="display:none;">
+      <div class="card-surface p-4 text-center text-muted">
+        You haven't enrolled in any courses yet.
+        <a href="/#courses">Browse courses</a>
+      </div>
+    </div>
+    <!-- course-progress-card elements are injected here by JS -->
+  </div>
+
+  <!-- Browse/apply to more courses -->
+  <section class="card-surface p-4 mb-5" id="available-courses">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <div>
+        <h5 class="fw-bold mb-1">Explore More Courses</h5>
+        <p class="text-muted mb-0">Apply for another course any time. Your current enrollments will be kept.</p>
+      </div>
+      <span class="badge text-bg-light" id="catalogCount">Loading courses…</span>
+    </div>
+    <div class="row g-3" id="courseCatalogGrid">
+      <div class="col-12 text-muted">Loading available courses…</div>
+    </div>
+    <div class="alert-inline mt-3" id="courseApplyAlert" role="status"></div>
+  </section>
+
+  <!-- Certificates -->
+  <div class="card-surface p-4 mb-5" id="certificate">
+    <h5 class="fw-bold mb-3">My Certificates</h5>
+    <div id="certificatesList">
+      <p class="text-muted mb-0">No certificates earned yet — keep learning!</p>
+    </div>
+  </div>
+
+
+  <!-- Task 13: Real-time Chat and Notifications -->
+  <section class="card-surface p-4 mb-4" id="learnsphere-chat" aria-labelledby="chatHeading">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <div><h5 class="fw-bold mb-1" id="chatHeading"><i class="bi bi-chat-dots me-2"></i>Student Chat</h5>
+        <small class="text-muted">Send direct messages to another registered student.</small><small class="text-muted d-block">Your student ID: <code id="myStudentId">Available after login</code></small></div>
+      <span id="socketStatus" class="badge text-bg-secondary">Connecting…</span>
+    </div>
+    <div class="row g-2 mb-3">
+      <div class="col-md-8"><label class="form-label" for="chatRecipient">Recipient student MongoDB ID</label>
+        <input class="form-control" id="chatRecipient" placeholder="Paste recipient's User ID" autocomplete="off"></div>
+      <div class="col-md-4 d-flex align-items-end"><button class="btn btn-outline-primary w-100" id="loadChatHistory" type="button">Load Chat History</button></div>
+    </div>
+    <div id="chatMessages" class="border rounded-3 p-3 mb-3" style="height:260px;overflow-y:auto;background:#f8fafc" aria-live="polite">
+      <p class="text-muted mb-0">Choose a student ID and load the conversation.</p>
+    </div>
+    <form id="chatForm" class="d-flex gap-2">
+      <input class="form-control" id="chatMessageInput" maxlength="2000" placeholder="Type your message…" required>
+      <button class="btn btn-primary" id="chatSendButton" type="submit" disabled>Send</button>
+    </form>
+    <div id="chatError" class="small text-danger mt-2" role="alert"></div>
+  </section>
+
+  <section class="card-surface p-4 mb-5" id="learnsphere-notifications" aria-labelledby="notificationHeading">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="fw-bold mb-0" id="notificationHeading"><i class="bi bi-bell me-2"></i>Notifications</h5>
+      <span id="notificationCount" class="badge text-bg-primary">0 unread</span>
+    </div>
+    <div id="notificationList"><p class="text-muted mb-0">Loading notifications…</p></div>
+  </section>
+
+</div>
+
+<!-- Certificate Modal (toggled via JS) -->
+<div class="modal-overlay" id="certModal">
+  <div class="modal-box">
+    <span class="modal-close" id="closeCertModal">&times;</span>
+    <div class="icon-tile mx-auto mb-3" style="background:var(--gradient-accent); width:64px;height:64px;font-size:28px;">
+      <i class="bi bi-award-fill"></i>
+    </div>
+    <h4 class="fw-bold" id="modalGreeting">Congratulations!</h4>
+    <p class="text-muted mb-2">You have successfully completed</p>
+    <h5 class="mb-3" style="color:var(--primary)" id="modalCourseName">—</h5>
+    <span class="badge-soft badge-soft-success">Certificate Ready</span>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/student-dashboard.js"></script>
+<script type="module" src="/js/task13.js"></script>
+</body>
+</html>

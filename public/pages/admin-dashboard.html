@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — LearnSphere</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/theme.css">
+
+<style>
+.dash-sidebar.admin{ background:linear-gradient(180deg,#0b1220,#111827); }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="dash-sidebar admin">
+  <div class="brand-row">
+    <span class="brand-mark" style="background:linear-gradient(135deg,#0f172a,#334155)"><i class="bi bi-shield-lock-fill"></i></span>
+    <span class="brand-text">LearnSphere</span>
+  </div>
+
+  <a href="/admin-dashboard" class="nav-item active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+  <a href="#students" class="nav-item"><i class="bi bi-people-fill"></i> Students</a>
+  <a href="#courses" class="nav-item"><i class="bi bi-journal-bookmark-fill"></i> Courses</a>
+  <a href="#reports" class="nav-item"><i class="bi bi-bar-chart-fill"></i> Reports</a>
+  <a href="/account-settings" class="nav-item"><i class="bi bi-gear-fill"></i> Account Settings</a>
+  <button class="nav-item" data-logout data-logout-redirect="/"><i class="bi bi-box-arrow-right"></i> Logout</button>
+</div>
+
+<!-- Main -->
+<div class="dash-main">
+
+  <div class="topbar flex-wrap gap-3">
+    <div>
+      <h4 class="fw-bold mb-0">Admin Overview</h4>
+      <p class="text-muted mb-0">Track student registrations and course completion at a glance.</p>
+    </div>
+    <div class="avatar-chip">
+      <div class="av" style="background:linear-gradient(135deg,#0f172a,#334155)" id="adminAvatar">AD</div>
+      <div>
+        <div class="fw-600 small" id="adminName">Admin</div>
+        <small class="text-muted">Super Admin</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric cards -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-1">
+        <div class="metric-icon"><i class="bi bi-people-fill"></i></div>
+        <p>Total Students</p>
+        <h2 class="skeleton" id="mTotalStudents">--</h2>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-2">
+        <div class="metric-icon"><i class="bi bi-journal-bookmark"></i></div>
+        <p>Total Courses</p>
+        <h2 class="skeleton" id="mTotalCourses">--</h2>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-3">
+        <div class="metric-icon"><i class="bi bi-hourglass-split"></i></div>
+        <p>Total Enrollments</p>
+        <h2 class="skeleton" id="mTotalEnrollments">--</h2>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="metric-card grad-4">
+        <div class="metric-icon"><i class="bi bi-award"></i></div>
+        <p>Certificates Issued</p>
+        <h2 class="skeleton" id="mCertificates">--</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course-wise summary -->
+  <div class="card-surface p-4 mb-4" id="courses">
+    <h5 class="fw-bold mb-3">Course-wise Enrollment</h5>
+    <div class="table-responsive">
+      <table class="table table-clean mb-0">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Enrolled</th>
+            <th>Completed</th>
+            <th>Avg. Progress</th>
+          </tr>
+        </thead>
+        <tbody id="courseStatsBody">
+          <tr><td colspan="4" class="text-center text-muted py-4">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Registered students -->
+  <div class="card-surface p-4 mb-5" id="students">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <div>
+        <h5 class="fw-bold mb-1">Registered Students</h5>
+        <small class="text-muted">Manage student records through the local Mock API.</small>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge-soft badge-soft-primary" id="totalRegBadge">0 total</span>
+        <button class="btn btn-gradient-primary btn-sm" id="addStudentBtn">
+          <i class="bi bi-person-plus-fill me-1"></i>Add Student
+        </button>
+      </div>
+    </div>
+    <div id="studentApiError" class="alert-inline error mb-3"></div>
+    <div class="table-responsive">
+      <table class="table table-clean mb-0">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Degree / Year</th>
+            <th>Course</th>
+            <th>Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="registrationsBody">
+          <tr><td colspan="6" class="text-center text-muted py-4">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Reports summary -->
+  <div class="card-surface p-4 mb-5" id="reports">
+    <h5 class="fw-bold mb-3">Monthly Report Summary</h5>
+
+    <p class="mb-1 small fw-600">Overall Course Completion Rate</p>
+    <div class="mini-progress mb-3" style="width:100%;">
+      <span id="reportCompletionBar" style="width:0%;background:var(--gradient-accent)"></span>
+    </div>
+    <small class="text-muted" id="reportCompletionLabel">0% of enrollments completed</small>
+  </div>
+
+</div>
+
+
+<!-- Student create/edit modal -->
+<div class="modal-overlay" id="studentModal" aria-hidden="true">
+  <div class="modal-box" style="max-width:560px;text-align:left;">
+    <button type="button" class="modal-close border-0 bg-transparent" id="closeStudentModal" aria-label="Close">&times;</button>
+    <h5 class="fw-bold mb-1" id="studentModalTitle">Add Student</h5>
+    <p class="text-muted small mb-4">Changes are saved to <code>data/db.json</code> through the Mock API.</p>
+
+    <div id="studentFormAlert" class="alert-inline error mb-3"></div>
+
+    <form id="studentForm">
+      <input type="hidden" id="studentId">
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-600">Full Name</label>
+          <input class="form-control" id="studentName" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-600">Email</label>
+          <input type="email" class="form-control" id="studentEmail" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-600">Degree</label>
+          <input class="form-control" id="studentDegree" placeholder="B.Sc / B.Tech" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-600">Year</label>
+          <select class="form-select" id="studentYear" required>
+            <option value="">Choose Year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+            <option>Final Year</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label fw-600">Course</label>
+          <select class="form-select" id="studentCourse" required>
+            <option value="">Loading courses...</option>
+          </select>
+        </div>
+        <div class="col-12" id="studentPasswordGroup">
+          <label class="form-label fw-600">Password <span class="text-muted fw-normal">(minimum 6 characters)</span></label>
+          <input type="password" class="form-control" id="studentPassword" minlength="6">
+          <small class="text-muted">For editing, leave blank to keep the existing password.</small>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button type="button" class="btn btn-outline-brand" id="cancelStudentBtn">Cancel</button>
+        <button type="submit" class="btn btn-gradient-primary" id="saveStudentBtn">Save Student</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/admin-dashboard.js"></script>
+</body>
+</html>
