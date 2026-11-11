@@ -2,8 +2,40 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "source": "/login",
+      "destination": "/pages/login.html"
+    },
+    {
+      "source": "/register",
+      "destination": "/pages/register.html"
+    },
+    {
+      "source": "/admin-login",
+      "destination": "/pages/admin-login.html"
+    },
+    {
+      "source": "/admin-register",
+      "destination": "/pages/admin-register.html"
+    },
+    {
+      "source": "/forgot-password",
+      "destination": "/pages/forgot-password.html"
+    },
+    {
+      "source": "/account-settings",
+      "destination": "/pages/account-settings.html"
+    },
+    {
+      "source": "/student-dashboard",
+      "destination": "/pages/student-dashboard.html"
+    },
+    {
+      "source": "/admin-dashboard",
+      "destination": "/pages/admin-dashboard.html"
+    },
+    {
+      "source": "/course-player",
+      "destination": "/pages/course-player.html"
     }
   ]
 }
