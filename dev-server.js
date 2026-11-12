@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const root = __dirname;
-const backendPort = process.env.BACKEND_PORT || '3000';
+const backendPort = process.env.BACKEND_PORT || '5000';
 
 function run(command, args, extraEnv = {}, spawnOptions = {}) {
   return spawn(command, args, {
@@ -15,9 +15,11 @@ function run(command, args, extraEnv = {}, spawnOptions = {}) {
   });
 }
 
-// Start the existing Node.js backend.
-const backend = run(process.execPath, [path.join(root, 'server.js')], {
+// Start the MongoDB-backed Express API used by both the app and Task 9–14 features.
+const backend = run(process.execPath, [path.join(root, 'backend', 'server.js')], {
   PORT: backendPort
+}, {
+  cwd: path.join(root, 'backend')
 });
 
 // Start Vite directly. This avoids Windows `npm exec`/child-process spawn issues.

@@ -1,3 +1,9 @@
+# Final deployment note
+
+The final version now uses the existing MongoDB-backed Render API for the LearnSphere frontend, student/admin authentication, course enrollment, progress, quizzes, and Task 9–14 features. Follow [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for the safe update steps. Keep the existing GitHub remote, Render service, Atlas database, and Vercel project. **Older sections below describe the earlier JSON-only/port-3000 setup; for the final unified deployment, follow `DEPLOYMENT_GUIDE.md` and the updated `backend/README.md`.**
+
+---
+
 # LearnSphere — Full-Stack Student/Admin Learning Platform
 
 LearnSphere is a beginner-friendly full-stack learning platform built with:

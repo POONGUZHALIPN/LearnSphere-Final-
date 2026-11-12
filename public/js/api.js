@@ -1,11 +1,14 @@
 /* LearnSphere — shared front-end API/service utilities */
 
-const API_BASE = '/api';
+// API URLs are centralized in config.js so local development and deployed
+// environments use the correct backend without hard-coded localhost requests.
+const APP_API_BASE = String(window.LEARNSPHERE_CONFIG?.APP_API_BASE_URL || 'http://localhost:3000/api').replace(/\/+$/, '');
+const TASK9_API_ROOT = String(window.LEARNSPHERE_CONFIG?.TASK9_API_BASE_URL || 'http://localhost:5000/api/v1').replace(/\/+$/, '');
 
 // ---------------------------------------------------------------------------
 // Task 9 Express authentication API (runs separately on port 5000)
 // ---------------------------------------------------------------------------
-const TASK9_AUTH_BASE = 'http://localhost:5000/api/v1/auth';
+const TASK9_AUTH_BASE = `${TASK9_API_ROOT}/auth`;
 
 async function task9AuthRequest(path, body) {
     let response;
@@ -39,13 +42,15 @@ async function apiRequest(path, options = {}) {
     let res;
 
     try {
-        res = await fetch(API_BASE + path, {
+        res = await fetch(APP_API_BASE + path, {
             method: options.method || 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                ...(sessionStorage.getItem('token')
+                    ? { Authorization: `Bearer ${sessionStorage.getItem('token')}` }
+                    : {}),
                 ...(options.headers || {})
             },
-            credentials: 'include',
             body: options.body !== undefined ? JSON.stringify(options.body) : undefined
         });
     } catch (networkError) {
@@ -65,7 +70,7 @@ async function apiRequest(path, options = {}) {
     }
 
     if (!res.ok) {
-        const message = (data && data.error) || `Request failed (${res.status})`;
+        const message = (data && (data.error || data.message)) || `Request failed (${res.status})`;
         const err = new Error(message);
         err.status = res.status;
         err.data = data;
@@ -115,7 +120,7 @@ async function task10ApiRequest(path, options = {}) {
     const token = sessionStorage.getItem('token');
     const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
     if (token) headers.Authorization = `Bearer ${token}`;
-    const response = await fetch(`http://localhost:5000/api/v1${path}`, {
+    const response = await fetch(`${TASK9_API_ROOT}${path}`, {
         method: options.method || 'GET',
         headers,
         body: options.body !== undefined ? JSON.stringify(options.body) : undefined
@@ -212,7 +217,7 @@ async function task13ApiRequest(path, options = {}) {
     const token = sessionStorage.getItem('token');
     const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
     if (token) headers.Authorization = `Bearer ${token}`;
-    const response = await fetch(`http://localhost:5000/api/v1${path}`, {
+    const response = await fetch(`${TASK9_API_ROOT}${path}`, {
         method: options.method || 'GET', headers,
         body: options.body !== undefined ? JSON.stringify(options.body) : undefined
     });

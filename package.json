@@ -1,16 +1,17 @@
 {
   "name": "learnsphere-app",
   "version": "3.0.1",
-  "description": "LearnSphere — Vite frontend with Node.js backend and clean routing.",
+  "description": "LearnSphere \u2014 Vite frontend with Node.js backend and clean routing.",
   "main": "server.js",
   "scripts": {
     "dev": "node dev-server.js",
-    "start": "node server.js",
-    "api": "node server.js",
+    "start": "npm --prefix backend start",
+    "api": "npm --prefix backend start",
     "frontend": "vite --config vite.config.js",
     "backend:dev": "npm --prefix backend run dev",
     "backend:start": "npm --prefix backend start",
-    "build": "vite build"
+    "build": "vite build",
+    "setup": "npm install && npm --prefix backend install"
   },
   "devDependencies": {
     "vite": "^7.1.5"

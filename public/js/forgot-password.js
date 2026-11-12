@@ -80,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const newPassword = document.getElementById('newPassword').value;
         const confirmNewPassword = document.getElementById('confirmNewPassword').value;
 
+        if (newPassword.length < 12 || newPassword.length > 72) {
+            showInlineAlert(alertBox, 'Password must be between 12 and 72 characters.', 'error');
+            return;
+        }
         if (newPassword !== confirmNewPassword) {
             showInlineAlert(alertBox, 'Passwords do not match.', 'error');
             return;

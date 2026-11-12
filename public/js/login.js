@@ -12,16 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setButtonLoading(submitBtn, true, 'Logging in...');
         try {
-            // Task 9/10 API verifies credentials and issues the JWT for protected API calls.
             const authResult = await task9AuthRequest('/login', { email, password });
-            if (authResult.token) sessionStorage.setItem('token', authResult.token);
-
-            // Establish the existing LearnSphere session used by dashboard and course learning.
-            await apiRequest('/login', { method: 'POST', body: { email, password } });
-
+            if (!authResult.token) throw new Error('The server did not return an authentication token.');
+            sessionStorage.setItem('token', authResult.token);
             showToast('Login successful! Redirecting…', 'success');
             setTimeout(() => { window.location.href = '/student-dashboard'; }, 500);
         } catch (err) {
+            sessionStorage.removeItem('token');
             showInlineAlert(alertBox, err.message, 'error');
         } finally {
             setButtonLoading(submitBtn, false);

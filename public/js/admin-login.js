@@ -12,11 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setButtonLoading(submitBtn, true, 'Signing in...');
         try {
-            await apiRequest('/admin/login', { method: 'POST', body: { email, password } });
+            const result = await task9AuthRequest('/admin/login', { email, password });
+            if (!result.token || result.admin?.role !== 'admin') {
+                throw new Error('This account does not have administrator access.');
+            }
+            sessionStorage.setItem('token', result.token);
             showToast('Welcome back, Admin!', 'success');
             setTimeout(() => { window.location.href = '/admin-dashboard'; }, 500);
         } catch (err) {
+            sessionStorage.removeItem('token');
             showInlineAlert(alertBox, err.message, 'error');
+        } finally {
             setButtonLoading(submitBtn, false);
         }
     });

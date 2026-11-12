@@ -1,6 +1,6 @@
 # LearnSphere Express Backend — Tasks 8–14
 
-The Express API now uses MongoDB through Mongoose for persistent student accounts and course records. The existing LearnSphere HTML/CSS/Vanilla JavaScript application and its port-3000 JSON-backed learning/session server are intentionally left unchanged so Task 10 frontend compatibility is preserved.
+The Express API now uses MongoDB through Mongoose for student/admin accounts, course records, enrollments, learning progress, chat and notifications. The existing LearnSphere HTML/CSS/Vanilla JavaScript UI keeps its original `/api/...` endpoint contracts, now served by this same MongoDB-backed API using JWT authentication.
 
 ## 1. Requirements
 
@@ -109,9 +109,10 @@ It verifies a real connection, course create/read/update, student registration/l
 
 ## 6. Storage responsibilities
 
-- Task 12: Express API student registration and course CRUD use MongoDB persistence.
-- Existing main LearnSphere app: its port-3000 JSON-backed dashboard, sessions, course applications, lesson completion, and quiz flow remain unchanged for Task 10 compatibility.
-- The `Enrollment`, `LearningProgress`, `Notification`, and `Message` Mongoose schemas are prepared from Task 11. Their feature routes/workflows can be connected in the next implementation tasks; this change does not pretend those workflows are already live.
+- Student and admin accounts, course catalog, enrollments, and learning progress use MongoDB persistence.
+- The existing LearnSphere UI endpoint contracts (`/api/me`, `/api/student/...`, `/api/students`, `/api/admin/overview`, and `/api/courses/.../content`) are served by this Express API and protected with JWT role checks where required.
+- Chat and notifications remain on the Task 13 Socket.IO/REST implementation.
+- The root `server.js` JSON demo server is retained for reference, but the standard local launcher and production deployment use `backend/server.js`.
 
 ## 7. Backend structure
 
@@ -141,7 +142,7 @@ Socket.IO is initialized on the exact same `http.Server` instance used by `serve
 
 Course listing accepts optional `page` and `limit` query parameters. Defaults are page 1 and 20 records; the maximum limit is 100. Invalid non-positive or non-integer values return HTTP 400.
 
-The JSON-backed port-3000 LearnSphere application remains in place for its existing student/admin dashboard and student CRUD workflows. Those student CRUD routes remain admin-session protected and now validate field types, email format, and field lengths. The MongoDB-backed port-5000 API remains responsible for JWT authentication, courses, chat, and notifications.
+The MongoDB-backed port-5000 API now serves the existing student/admin dashboard and student CRUD workflows as well as JWT authentication, courses, chat, and notifications. The root `server.js` is retained for reference but is no longer started by the standard development command.
 
 ### Task 14 packages
 
@@ -164,3 +165,6 @@ npm run dev
 ```
 
 Health check: `GET http://localhost:5000/api/health`. Use Postman for the Task 14 security test matrix.
+
+
+For the final GitHub + Render + MongoDB Atlas + Vercel deployment sequence, see [`../DEPLOYMENT_GUIDE.md`](../DEPLOYMENT_GUIDE.md).

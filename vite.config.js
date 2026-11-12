@@ -59,18 +59,7 @@ export default defineConfig({
     strictPort: false,
 
     proxy: {
-      '/api': 'http://localhost:3000',
-      '/login': 'http://localhost:3000',
-      '/register': 'http://localhost:3000',
-      '/logout': 'http://localhost:3000',
-      '/forgot-password': 'http://localhost:3000',
-      '/reset-password': 'http://localhost:3000',
-      '/admin-login': 'http://localhost:3000',
-      '/admin-register': 'http://localhost:3000',
-      '/student/dashboard': 'http://localhost:3000',
-      '/admin/dashboard': 'http://localhost:3000',
-      '/course': 'http://localhost:3000',
-      '/account': 'http://localhost:3000'
+      '/api': 'http://localhost:5000'
     }
   },
 

@@ -16,6 +16,7 @@ const errorHandler = require("./middleware/errorMiddleware");
 const initializeSocket = require("./config/socket");
 const messageRoutes = require("./routes/messageRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
+const appRoutes = require("./routes/appRoutes");
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -59,6 +60,8 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+// Preserve the existing UI API paths while backing them with MongoDB and JWT.
+app.use("/api", appRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/messages", messageRoutes);
 app.use("/api/v1/notifications", notificationRoutes);

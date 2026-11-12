@@ -27,6 +27,18 @@ const userSchema = new mongoose.Schema(
       default: "General",
       maxlength: 100
     },
+    degree: {
+      type: String,
+      trim: true,
+      default: "General",
+      maxlength: 100
+    },
+    year: {
+      type: String,
+      trim: true,
+      default: "1st Year",
+      maxlength: 30
+    },
     role: {
       type: String,
       enum: ["student", "admin"],

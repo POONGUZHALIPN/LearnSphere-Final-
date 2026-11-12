@@ -41,13 +41,19 @@ function toDatabaseCourse(data) {
 }
 
 async function seedInitialCourses() {
-  const existingCount = await Course.countDocuments();
-  if (existingCount > 0) return { seeded: false, count: existingCount };
+  // Add only missing catalog entries. Existing MongoDB courses are never
+  // overwritten or deleted when the app is redeployed.
+  const existing = await Course.find().select("title").lean();
+  const existingTitles = new Set(existing.map((item) => String(item.title).toLowerCase()));
+  const missing = starterCourses
+    .filter((course) => !existingTitles.has(String(course.courseName || course.title).toLowerCase()))
+    .map((course) => toDatabaseCourse(course));
 
-  const documents = starterCourses.map((course) => toDatabaseCourse(course));
-  await Course.insertMany(documents);
-  console.log(`Inserted ${documents.length} starter courses into MongoDB.`);
-  return { seeded: true, count: documents.length };
+  if (missing.length) {
+    await Course.insertMany(missing);
+    console.log(`Inserted ${missing.length} missing LearnSphere catalog courses into MongoDB.`);
+  }
+  return { seeded: missing.length > 0, count: existing.length + missing.length };
 }
 
 async function getAllCourses({ page = 1, limit = 20 } = {}) {

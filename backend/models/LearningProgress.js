@@ -27,6 +27,20 @@ const learningProgressSchema = new mongoose.Schema(
       min: 0,
       max: 100,
       default: 0
+    },
+    quizPassed: {
+      type: Boolean,
+      default: false
+    },
+    quizScore: {
+      type: Number,
+      default: null,
+      min: 0
+    },
+    quizAttempts: {
+      type: Number,
+      default: 0,
+      min: 0
     }
   },
   { timestamps: true }

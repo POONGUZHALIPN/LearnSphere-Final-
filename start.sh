@@ -1,10 +1,8 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-echo "Starting LearnSphere..."
+echo "Starting LearnSphere frontend and MongoDB-backed API..."
 echo ""
-echo "Once you see \"LearnSphere server running\", open this in your browser:"
-echo "  http://localhost:3000"
+echo "Open: http://localhost:5173"
+echo "Press Ctrl+C to stop both processes."
 echo ""
-echo "Press Ctrl+C to stop the server."
-echo ""
-node server.js
+npm run dev

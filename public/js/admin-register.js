@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const confirmPassword = document.getElementById('confirmPassword').value;
         const inviteCode = document.getElementById('inviteCode').value.trim();
 
+        if (password.length < 12 || password.length > 72) {
+            showInlineAlert(alertBox, 'Password must be between 12 and 72 characters.', 'error');
+            return;
+        }
+
         if (password !== confirmPassword) {
             showInlineAlert(alertBox, 'Passwords do not match.', 'error');
             return;
@@ -20,10 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setButtonLoading(submitBtn, true, 'Creating account...');
         try {
-            await apiRequest('/admin/register', {
-                method: 'POST',
-                body: { name, email, password, inviteCode }
-            });
+            await task9AuthRequest('/admin/register', { name, email, password, inviteCode });
             showToast('Admin account created! Please log in.', 'success');
             setTimeout(() => { window.location.href = '/admin-login'; }, 700);
         } catch (err) {
